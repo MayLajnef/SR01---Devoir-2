@@ -24,8 +24,7 @@ C'est un OU logique, ce qui signifie qu'un des deux fork() au plus sera exécut�
 
 Cas 1 : Le premier fork() de l'expression ``` C( fork() || fork() )``` réussit
 
-→ Un nouveau processus fils est créé.  De plus, dans le cas d'une exécution réussie, le deuxième fork() ne sera PAS exécuté, car c'est le comportement du OU logique ||). En effet, La particularité de || (OU) est qu'il s'arrête dès qu'une condition est vraie. Donc, dès qu'un fork() réussit, l'autre ne sera pas exécuté.
-Donc, à ce stade, on  on a donc créée 2 processus fils : le premier fils créé dans la première partie de l'expression logique ET et le deuxième fils créé ici par le premier fork() de l'expression ``` C( fork() || fork() )``` .
+→ Un nouveau processus fils est créé.  De plus, dans le cas d'une exécution réussie, le deuxième fork() ne sera PAS exécuté, car c'est le comportement du OU logique ||). En effet, La particularité de || (OU) est qu'il s'arrête dès qu'une condition est vraie. Ainsi, à ce stade, on a donc créée 2 processus fils : le premier fils créé dans la première partie de l'expression logique ET et le deuxième fils créé ici par le premier fork() de l'expression ``` C( fork() || fork() )``` .
 
 Cas 2 : Le premier fork() de l'expression ``` C( fork() || fork() )```échoue
 
