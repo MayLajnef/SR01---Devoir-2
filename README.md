@@ -40,4 +40,14 @@ Nombres possibles de processus créés :
   
 - 2 processus créés (le fork() de la première partie de l'expression logique ET réussit et au moins l'un des 2 fork() de l'expression ```C ( fork() || fork() )``` réussit)
 
+Voici l'arbre généalogique des processus : 
+``` perl
+Père
+ └── Fils1 (créé par le premier fork avant &&)
+       ├── Fils2   (créé par le premier fork dans l'`||`)
+       └── Fils2-bis (créé par le deuxième fork dans l'`||`, si le premier échoue)
+```
+
+
+
   
