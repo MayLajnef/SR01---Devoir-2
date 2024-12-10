@@ -1,8 +1,8 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
 #define DURATION 60
 
@@ -15,23 +15,31 @@ int main() {
         case -1: // fork() a échoué
             perror("fork échoué");
             exit(EXIT_FAILURE);
-            break;
 
-        case 0:  // Processus fils
-            for (int i = DURATION; i > 0; i--) {
-                printf("Fils : je suis vivant pour encore %d secondes.\n", i);
-                fflush(stdout);
-                sleep(1);
-            }
-            printf("Fils : je termine maintenant.\n");
+        case 0:  // Processus enfant
+            printf("Fils : Mon PID est %d. Je me mets en sommeil pour %d secondes.\n", getpid(), DURATION);
+            fflush(stdout);
+
+            // 1. Se mettre en sommeil
+            sleep(DURATION);
+
+            // 2. Afficher un autre message après sommeil
+            printf("Fils : Réveil terminé. Je termine mon processus.\n");
+            fflush(stdout);
+
+            // 3. Exécuter explicitement un autre appel système
+            printf("Fils : Mon PID est toujours %d (appel système getpid).\n", getpid());
+
+            // Terminer le processus enfant
             exit(EXIT_SUCCESS);
-            break;
 
         default: // Processus père
-            printf("Père : mon processus fils a été créé avec PID = %d\n", pid_fils);
-            sleep(120); // Le père reste en vie pour observer le zombie
-            printf("Père : fin du processus.\n");
-            break;
+            printf("Père : Mon fils a été créé avec PID = %d\n", pid_fils);
+
+            // Le père attend que le fils termine
+            wait(NULL);
+
+            printf("Père : Le processus fils a terminé. Fin du processus père.\n");
     }
 
     return EXIT_SUCCESS;
