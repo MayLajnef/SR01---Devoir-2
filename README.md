@@ -1,4 +1,8 @@
-# SR01-Devoir-2
+# RAPPORT (Devoir 2)
+
+## Membres du binôme :
+- Sofia Dulac-Belesgaa
+- May Lajnef
 
 ## Ex 1 :
 On exécute la commande C suivante :
@@ -40,7 +44,7 @@ Nombres possibles de processus créés :
   
 - 2 processus créés (le fork() de la première partie de l'expression logique ET réussit et au moins l'un des 2 fork() de l'expression ``` ( fork() || fork() )``` réussit)
 
-Voici l'arbre généalogique des processus : 
+**Arbre généalogique des processus**
 ``` perl
 Père
  └── Fils1 (créé par le premier fork avant &&)
@@ -86,7 +90,7 @@ int max(int* tab, int debut, int fin) {
 }
 ```
   
-La fonction max() retourne le maximum d'un sous-tableau (ensemble des éléments du tableau complet ```tab``` qui sont compris entre un indice de début et un indice de fin). Tout d'abord, on initialise le maximum au premier élément du sous-tableau. Puis, on fait un parcourt séquentiel des éléments du sous-tableau, où on applique la fonction max() (cf. question 1) à chaque paire d'éléments consécutifs du sous-tableau. Finalement, on renvoie la dernière valeur de notre variable  ```tab```, qui est le maximum parmi tous les éléments du sous tableau. 
+La fonction max() retourne le maximum d'un sous-tableau (ensemble des éléments du tableau complet ```tab``` qui sont compris entre un indice de début et un indice de fin). Tout d'abord, on initialise le maximum au premier élément du sous-tableau. Puis, on fait un parcourt séquentiel des éléments du sous-tableau, où on applique la fonction max() (cf. question 1) à chaque itération pour comparer l'élément parcouru au maximum courant contenu dans la variable  ```max```. Finalement, on renvoie la dernière valeur de notre variable  ```max```, qui est le maximum parmi tous les éléments du sous tableau. 
 
 3) 
 Dans la fonction lire_pere(), le fichier dont le nom est donné en argument est détruit après lecture via remove().
