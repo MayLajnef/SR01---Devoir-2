@@ -13,4 +13,4 @@ void lire_pere(int* nb, char* name);
 int entrer_nombre();
 void signal_handler(int sig);
 
-#endif
+#endif //EXO2_H

@@ -158,3 +158,4 @@ int main() {
     free(tableau); // Libération de la mémoire allouée
     return 0;
 }
+
